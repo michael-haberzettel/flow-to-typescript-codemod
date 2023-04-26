@@ -22,6 +22,15 @@ export function transformPrivateTypes({
       const isTypeAnnotation = path.parentPath.type === "GenericTypeAnnotation";
       if ((hasPrivateType || privateReactType) && isTypeAnnotation) {
         const [qualification, name] = id.name.split("$");
+
+        if (
+          qualification.toLocaleLowerCase() !== "react" &&
+          ["key", "data", "variables"].includes(name)
+        ) {
+          // Relay type; ignore it
+          return;
+        }
+
         replaceWith(
           path,
           t.qualifiedTypeIdentifier(

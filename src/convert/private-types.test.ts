@@ -54,6 +54,32 @@ describe("transform type annotations", () => {
     expect(await transform(src)).toBe(expected);
   });
 
+  it("Must preserve relay types", async () => {
+    const src = dedent`
+    // @flow
+  
+    type Props = {
+        accountRef: PublishCalendarSideDrawerPostPreview_account$key,
+        postRef: PublishCalendarSideDrawerPostPreview_post$key,
+        publishPermissionsRef: PublishCalendarSideDrawerPostPreview_publishPermissions$key,
+        publishSettingsRef: PublishCalendarSideDrawerPostPreview_publishSettings$key,
+        socialAccountsRef: PublishCalendarSideDrawerPostPreview_socialAccounts$data,
+        toolsRef: PublishCalendarSideDrawerPostPreview_tools$variables,
+    };
+    `;
+    const expected = dedent`
+    type Props = {
+        accountRef: PublishCalendarSideDrawerPostPreview_account$key,
+        postRef: PublishCalendarSideDrawerPostPreview_post$key,
+        publishPermissionsRef: PublishCalendarSideDrawerPostPreview_publishPermissions$key,
+        publishSettingsRef: PublishCalendarSideDrawerPostPreview_publishSettings$key,
+        socialAccountsRef: PublishCalendarSideDrawerPostPreview_socialAccounts$data,
+        toolsRef: PublishCalendarSideDrawerPostPreview_tools$variables
+    };
+    `;
+    expect(await transform(src)).toBe(expected);
+  });
+
   describe("with props", () => {
     it("replaces $FlowFixMe no matter what", async () => {
       const state = stateBuilder({
