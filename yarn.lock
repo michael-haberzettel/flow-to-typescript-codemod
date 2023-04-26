@@ -1121,10 +1121,10 @@ assign-symbols@^1.0.0:
   resolved "https://registry.npmjs.org/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
   integrity sha512-Q+JC7Whu8HhmTdBph/Tq59IoRtoy6KAm5zzPv00WdujX82lbAL8K7WVjne7vdCsAmbF4AYaDOPyO3k0kl8qIrw==
 
-ast-types@0.14.2:
-  version "0.14.2"
-  resolved "https://registry.npmjs.org/ast-types/-/ast-types-0.14.2.tgz#600b882df8583e3cd4f2df5fa20fa83759d4bdfd"
-  integrity sha512-O0yuUDnZeQDL+ncNGlJ78BiO4jnYI3bvMsD5prT0/nsgijG/LpNBIr63gTjVTNsiGkgQhiyCShTgxt8oXOrklA==
+ast-types@0.14.2, "ast-types@npm:@gkz/ast-types":
+  version "0.14.4"
+  resolved "https://registry.yarnpkg.com/@gkz/ast-types/-/ast-types-0.14.4.tgz#607c03c8fcff2ed900524ab075074947f864becf"
+  integrity sha512-+HqS1tEB4v7WdxmgySCc3k0IuEYdj7MCgPTZD4PcAJNtSBwvjK1l8cOuchcX7d/FZ8+0Z7v/CU7Zv54iEOZ2HA==
   dependencies:
     tslib "^2.0.1"
 
@@ -2285,6 +2285,11 @@ flow-bin@^0.162.0:
   version "0.162.0"
   resolved "https://registry.npmjs.org/flow-bin/-/flow-bin-0.162.0.tgz#26e3f9db2c93684499c68f1a85e57d888858dc5c"
   integrity sha512-AXbDZjRzMQpmvyqeXlS9NV4eNHWGV1Fg/1v6FtuIAu+zsYJJ0mJ2JumqNUxF47rxOoeL9jGtuMxInx9rgqnFCw==
+
+flow-parser@0.152:
+  version "0.152.0"
+  resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.152.0.tgz#a627aec1fdcfa243e2016469e44284a98169b996"
+  integrity sha512-qRXGE3ztuhyI2ovi4Ixwq7/GUYvKX9wmFdwBof2q5pWHteuveexFrlbwZxSonC0dWz2znA6sW+vce4RXgYLnnQ==
 
 flow@^0.2.3:
   version "0.2.3"

@@ -30,7 +30,9 @@
     "@babel/traverse": "7.16.0",
     "@babel/types": "7.16.0",
     "code-block-writer": "10",
-    "minimist": "1.2.6"
+    "minimist": "1.2.6",
+    "**/ast-types": "npm:@gkz/ast-types",
+    "**/flow-parser": "0.152"
   },
   "devDependencies": {
     "@babel/parser": "7.16.0",
