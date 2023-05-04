@@ -109,7 +109,7 @@ export function transformDeclarations({
 
             // `import {type X} from` => `import {X} from`
             if (specifier.importKind === "type") {
-              specifier.importKind = null;
+              //specifier.importKind = null;
             }
           }
         }

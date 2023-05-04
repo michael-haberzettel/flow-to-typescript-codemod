@@ -1,0 +1,16 @@
+{
+  "name": "codemods",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/jscodeshift": "^0.11.6",
+    "ast-types": "^0.14.2",
+    "flow-parser": "^0.201.0",
+    "flowts": "^0.15.21",
+    "jscodeshift": "^0.14.0"
+  },
+  "scripts": {
+    "jscodeshift": "node node_modules/.bin/jscodeshift"
+  }
+}
