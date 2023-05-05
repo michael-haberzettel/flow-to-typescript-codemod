@@ -1,41 +1,43 @@
 import {
-    API,
-    FileInfo,
-    QualifiedTypeIdentifier,
-    Identifier,
-    GenericTypeAnnotation,
-} from 'jscodeshift'
+  API,
+  FileInfo,
+  QualifiedTypeIdentifier,
+  Identifier,
+  GenericTypeAnnotation,
+} from "jscodeshift";
+
+// Transformation de test qui permet de transformer des types
 
 export default function (file: FileInfo, api: API) {
-    const j = api.jscodeshift
-    const root = j(file.source)
+  const j = api.jscodeshift;
+  const root = j(file.source);
 
-    const erf = root.find(j.GenericTypeAnnotation, {
-        id: {
-            qualification: {
-                name: 'React',
-            },
-            id: {
-                name: 'ComponentType',
-            },
-        },
-    })
+  const erf = root.find(j.GenericTypeAnnotation, {
+    id: {
+      qualification: {
+        name: "React",
+      },
+      id: {
+        name: "ComponentType",
+      },
+    },
+  });
 
-    erf.forEach((path) => {
-        const Node = path.value
-        const qualifiedIdentifier = Node.id as QualifiedTypeIdentifier
-        qualifiedIdentifier.id.name = 'ComponentTypeddds'
+  erf.forEach((path) => {
+    const Node = path.value;
+    const qualifiedIdentifier = Node.id as QualifiedTypeIdentifier;
+    qualifiedIdentifier.id.name = "ComponentTypeddds";
 
-        const generics = Node.typeParameters?.params as GenericTypeAnnotation[]
-        if (generics.length > 0) {
-            const id = generics[0].id as Identifier
-            id.name = 'Figre'
-        }
-    })
-    //const variableDeclarators = root.find(ttt)
-    console.log(erf)
+    const generics = Node.typeParameters?.params as GenericTypeAnnotation[];
+    if (generics.length > 0) {
+      const id = generics[0].id as Identifier;
+      id.name = "Figre";
+    }
+  });
+  //const variableDeclarators = root.find(ttt)
+  console.log(erf);
 
-    return root.toSource()
+  return root.toSource();
 }
 
 // import { API, FileInfo } from 'jscodeshift'

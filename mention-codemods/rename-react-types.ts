@@ -1,5 +1,7 @@
 import { API, FileInfo } from "jscodeshift";
 
+// Transformation des types React de flow vers une correspondance Typescript
+
 // jscodeshift can take a parser, like "babel", "babylon", "flow", "ts", or "tsx"
 // Read more: https://github.com/facebook/jscodeshift#parser
 export const parser = "flow";
