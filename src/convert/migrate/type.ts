@@ -54,6 +54,12 @@ function actuallyMigrateType(
     case "ArrayTypeAnnotation":
       return t.tsArrayType(migrateType(reporter, state, flowType.elementType));
 
+    case "IndexedAccessType":
+      const leftPart = migrateType(reporter, state, flowType.objectType);
+      const rightPart = migrateType(reporter, state, flowType.indexType);
+
+      return t.tsIndexedAccessType(leftPart, rightPart);
+
     case "BooleanTypeAnnotation":
       return t.tsBooleanKeyword();
 
