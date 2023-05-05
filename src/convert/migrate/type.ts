@@ -5,6 +5,7 @@ import {
   GlobalTypes,
   LiteralTypes,
   hasNullReturn,
+  buildTSIdentifier,
 } from "../utils/common";
 import {
   migrateTypeParameterDeclaration,
@@ -21,6 +22,8 @@ import { State } from "../../runner/state";
 import { matchesFullyQualifiedName } from "../utils/matchers";
 import { migrateFunctionParameters } from "./function-parameter";
 import { MetaData } from "./metadata";
+import { tsAnyKeyword } from "@babel/types";
+import { isTSTypeLiteral } from "@babel/types";
 
 export function migrateType(
   reporter: MigrationReporter,
@@ -877,9 +880,44 @@ function actuallyMigrateType(
         }
       });
 
+      const indexSIgnatureToEmulateInexactFlowType =
+        flowType.inexact &&
+        (flowType.indexers == null || flowType.indexers.length === 0)
+          ? t.tsIndexSignature(
+              [
+                buildTSIdentifier(
+                  "key",
+                  null,
+                  t.tsTypeAnnotation(t.tsStringKeyword())
+                ),
+              ],
+              t.tsTypeAnnotation(tsAnyKeyword())
+            )
+          : null;
+
       if (types.length === 1) {
+        const soloNode = types[0];
+        if (
+          isTSTypeLiteral(soloNode) &&
+          indexSIgnatureToEmulateInexactFlowType != null &&
+          soloNode
+        ) {
+          soloNode.members = [
+            ...soloNode.members,
+            indexSIgnatureToEmulateInexactFlowType,
+          ];
+        }
+
         return types[0];
       } else {
+        if (types != null && indexSIgnatureToEmulateInexactFlowType != null) {
+          const indexSignatureSeparatedType = t.tsTypeLiteral([
+            indexSIgnatureToEmulateInexactFlowType,
+          ]);
+
+          types.push(indexSignatureSeparatedType);
+        }
+
         return t.tsIntersectionType(types);
       }
     }
