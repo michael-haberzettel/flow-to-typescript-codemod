@@ -6,6 +6,12 @@ import JQuery from "jquery";
 import d3 from "@types/d3";
 
 declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      NODE_ENV?: "production" | "test" | "development";
+    }
+  }
+
   interface Window {
     $: JQueryStatic;
     Backbone: any;
@@ -16,9 +22,11 @@ declare global {
       browser: string;
       os: string;
     };
+    browser?: any;
 
     SafeDeferred: any;
-    (...args: any[]): void;
+    (el: any): JQuery<any>;
+    (...args: any[]): JQuery<any>;
   }
 
   interface JQuery {

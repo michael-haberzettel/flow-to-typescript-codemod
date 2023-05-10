@@ -43,4 +43,14 @@ declare module "react-date-picker";
 declare module "react-select2-wrapper";
 declare module "react-visibility-sensor";
 declare module "userflow.js";
-declare module "xlsx";
+declare module "xlsx" {
+  export type CellDatum = any;
+  export type Cell = any;
+  export type Sheets = any;
+  export var utils: any;
+  export var SSF: any;
+
+  export function write(arg1: any, arg2: any): string;
+}
+
+declare module "xregexp";
