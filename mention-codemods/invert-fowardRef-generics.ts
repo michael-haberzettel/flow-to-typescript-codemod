@@ -22,10 +22,10 @@ export default function (file: FileInfo, api: API) {
       callExpression.typeArguments.params != null &&
       callExpression.typeArguments.params.length === 2
     ) {
-      const firstGenericName = callExpression.typeArguments.params[0].id.name;
-      callExpression.typeArguments.params[0].id.name =
-        callExpression.typeArguments.params[1].id.name;
-      callExpression.typeArguments.params[1].id.name = firstGenericName;
+      const firstGeneric = callExpression.typeArguments.params[0];
+      callExpression.typeArguments.params[0] =
+        callExpression.typeArguments.params[1];
+      callExpression.typeArguments.params[1] = firstGeneric;
     }
   });
 
