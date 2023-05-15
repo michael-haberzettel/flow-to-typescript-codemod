@@ -10,6 +10,20 @@ export default function transformer(file, api) {
   const root = j(file.source);
 
   function extractAndBuildStringType(path, options) {
+    const functionalProps = path.value.quasi.expressions
+      .map((expr) => expr)
+      .filter(
+        (expr) =>
+          expr.type === "CallExpression" &&
+          expr.callee != null &&
+          expr.callee.object != null &&
+          expr.callee.object.name === "F" &&
+          expr.callee.property != null &&
+          expr.callee.property.name === "prop" &&
+          expr.arguments.length > 0
+      )
+      .map((expr) => expr.arguments[0].value);
+
     const usedVarsComplex = path.value.quasi.expressions
       .map((expr) => expr)
       .filter(
@@ -70,6 +84,7 @@ export default function transformer(file, api) {
       .flatMap((e) => e.params[0].properties.map((p) => p.key.name));
 
     const extractedTypes = new Set([
+      ...functionalProps,
       ...usedVars,
       ...usedVarsComplex,
       ...destructuredVars,
@@ -92,10 +107,7 @@ export default function transformer(file, api) {
     .filter(
       (el) =>
         el.value.quasi.expressions != null &&
-        el.value.quasi.expressions.length > 0 &&
-        el.value.quasi.expressions.some(
-          (expr) => expr.type === "ArrowFunctionExpression"
-        )
+        el.value.quasi.expressions.length > 0
     )
     .forEach((path) => {
       const extractedType = extractAndBuildStringType(path, {
@@ -118,10 +130,7 @@ export default function transformer(file, api) {
     .filter(
       (el) =>
         el.value.quasi.expressions != null &&
-        el.value.quasi.expressions.length > 0 &&
-        el.value.quasi.expressions.some(
-          (expr) => expr.type === "ArrowFunctionExpression"
-        )
+        el.value.quasi.expressions.length > 0
     )
     .forEach((path) => {
       const extractedType = extractAndBuildStringType(path, {
