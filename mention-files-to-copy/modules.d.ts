@@ -39,7 +39,18 @@ declare module "mention/integrations/*";
 declare module "mention/legacy/*";
 declare module "mention/vendor/*";
 declare module "moment-timezone";
-declare module "react-date-picker";
+declare module "react-ace" {
+  export type Annotation = any;
+  export type Command = any;
+  export type Editor = any;
+
+  var exportLib: any;
+  export default exportLib;
+}
+declare module "react-date-picker" {
+  var exportLib: any;
+  export default exportLib;
+}
 declare module "react-select2-wrapper";
 declare module "react-visibility-sensor";
 declare module "userflow.js";

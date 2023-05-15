@@ -19,5 +19,21 @@ export default function (file, api) {
     Node.typeAnnotation = null;
   });
 
+  const createSelectors = root.find(j.TypeAnnotation, {
+    typeAnnotation: { id: { name: "OutputSelector" } },
+  });
+
+  createSelectors.forEach((path) => {
+    path.replace("");
+  });
+
+  const createSelectors2 = root.find(j.FunctionTypeAnnotation, {
+    returnType: { id: { name: "OutputSelector" } },
+  });
+
+  createSelectors2.forEach((path) => {
+    path.replace("");
+  });
+
   return root.toSource();
 }
