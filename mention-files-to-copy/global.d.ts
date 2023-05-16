@@ -3,7 +3,7 @@ import undescore from "underscore";
 import moment from "moment";
 import normalizr from "normalizr";
 import JQuery from "jquery";
-import d3 from "@types/d3";
+import d3 from "d3";
 
 declare global {
   namespace NodeJS {
