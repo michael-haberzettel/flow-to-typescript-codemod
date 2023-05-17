@@ -12,6 +12,11 @@ declare global {
     }
   }
 
+  namespace d3 {
+    var scale: any;
+    var time: any;
+  }
+
   interface Window {
     $: JQueryStatic;
     Backbone: any;
