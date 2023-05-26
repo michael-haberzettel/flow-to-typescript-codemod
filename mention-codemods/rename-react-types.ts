@@ -7,6 +7,7 @@ import { API, FileInfo } from "jscodeshift";
 export const parser = "flow";
 
 export const ReactTypes = {
+  AbstractComponent: "React$AbstractComponent",
   Node: "ReactElement",
   Child: "ReactChild",
   Children: "ReactChildren",

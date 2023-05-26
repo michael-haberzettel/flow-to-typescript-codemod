@@ -24,12 +24,21 @@ function prefixReactType(root, j, specifierName) {
 }
 
 const typesToPrefix = [
-  "Node",
-  "ComponentType",
-  "Component",
   "AbstractComponent",
+  "Child",
+  "Children",
+  "Component",
+  "ComponentType",
+  "ElementProps",
   "ElementRef",
   "ElementType",
+  "Fragment",
+  "FragmentType",
+  "Node",
+  "NodeArray",
+  "Portal",
+  "StatelessFunctionalComponent",
+  "Text",
 ];
 
 export default function (file: FileInfo, api: API) {

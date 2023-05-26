@@ -1,4 +1,4 @@
-import { App } from "../flow-libs/declarations/App";
+import { AppInterface } from "mention-global-module";
 import undescore from "underscore";
 import moment from "moment";
 import normalizr from "normalizr";
@@ -46,7 +46,7 @@ declare global {
   var Intercom: any;
   var toastr: any;
   var __webpack_public_path__: string;
-  var App: App;
+  var App: AppInterface;
   var _: typeof undescore;
   var analytics: any;
   var Translation: any;
@@ -54,7 +54,7 @@ declare global {
   var transDesc: any;
   var ___trans_desc___: any;
   interface Window {
-    App: App;
+    App: AppInterface;
     _: typeof undescore;
     analytics: any;
     Translator: any;
