@@ -54,6 +54,21 @@ function actuallyMigrateType(
     case "ArrayTypeAnnotation":
       return t.tsArrayType(migrateType(reporter, state, flowType.elementType));
 
+    case "OptionalIndexedAccessType":
+      const leftPartInternal = migrateType(
+        reporter,
+        state,
+        flowType.objectType
+      );
+      const rightPartOpt = migrateType(reporter, state, flowType.indexType);
+
+      const leftPartOpt = t.tsTypeReference(
+        t.identifier("Exclude"),
+        t.tsTypeParameterInstantiation([leftPartInternal, t.tsNullKeyword()])
+      );
+
+      return t.tsIndexedAccessType(leftPartOpt, rightPartOpt);
+
     case "IndexedAccessType":
       const leftPart = migrateType(reporter, state, flowType.objectType);
       const rightPart = migrateType(reporter, state, flowType.indexType);
