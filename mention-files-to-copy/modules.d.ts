@@ -1,3 +1,8 @@
+declare module "*.svg" {
+  const content: string;
+  export default content;
+}
+
 declare module "@chargebee/chargebee-js-react-wrapper" {
   export type ChargeBeeErrorsStateEntry = {
     errorCode: string;
